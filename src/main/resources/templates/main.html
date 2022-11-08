@@ -5,6 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-    let's make todolist
+
+    <h1>ToDoList</h1>
+    <table border="1" style="text-align: center">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Todo</th>
+                <th>Completed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="todoentity : ${toDoEntityList}">
+                <td th:text="${todoentity.id}"></td>
+                <td th:text="${todoentity.content}"></td>
+                <td th:text="${todoentity.completed}"></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+
 </body>
 </html>
