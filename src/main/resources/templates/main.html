@@ -6,7 +6,11 @@
 </head>
 <body>
 
-    <h1>ToDoList</h1>
+    <h1>ToDoList</h1><br>
+    <form th:action="@{/create}" method="post">
+        <input name="content" placeholder="Enter Todo!!" type="text">
+        <button>add</button>
+    </form>
     <table border="1" style="text-align: center">
         <thead>
             <tr>

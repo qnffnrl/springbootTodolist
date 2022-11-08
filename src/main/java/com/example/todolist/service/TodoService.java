@@ -17,4 +17,11 @@ public class TodoService {
         return this.todoRepository.findAll();
     }
 
+    public void create(String content){
+        TodoEntity todoEntity = new TodoEntity();
+        todoEntity.setContent(content);
+        todoEntity.setCompleted(false);
+        this.todoRepository.save(todoEntity);
+    }
+
 }
