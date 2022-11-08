@@ -2,21 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>TodoList</title>
+    <style>
+        #page {width: 50%; margin: 0 auto; display: flex; justify-content: center; flex-direction: column; align-items: center;}
+        h1{border-bottom: 1px black solid; width: 100%; text-align: center; padding-bottom: 20px;}
+    </style>
 </head>
 <body>
-
-    <h1>ToDoList</h1><br>
+<div id="page">
+    <h1>ToDoList</h1>
     <form th:action="@{/create}" method="post">
         <input name="content" placeholder="Enter Todo!!" type="text">
         <button>add</button>
     </form>
+    <br>
     <table border="1" style="text-align: center">
         <thead>
             <tr>
                 <th>Number</th>
                 <th>Todo</th>
                 <th>Completed</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -24,11 +30,26 @@
                 <td th:text="${todoentity.id}"></td>
                 <td th:text="${todoentity.content}"></td>
                 <td th:text="${todoentity.completed}"></td>
+                <td><button id="delete-btn" th:onclick="deleteItem([[${todoentity.id}]])">delete</button></td>
             </tr>
         </tbody>
-
     </table>
-
-
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    function deleteItem(id){
+        const url = "/delete/"+id;
+        $.ajax({
+            type:'delete',
+            url:url,
+            contentType:'application/json; charset=utf-8'
+        }).done(function() {
+                alert("Todo was deleted!");
+                window.location.href = '/';
+        }).fail(function() {
+            alert(JSON.stringify(error));
+        });
+    }
+</script>
 </html>
